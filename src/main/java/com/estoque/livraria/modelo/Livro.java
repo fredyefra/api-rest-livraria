@@ -2,6 +2,14 @@ package com.estoque.livraria.modelo;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Livro implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -21,7 +29,8 @@ public class Livro implements Serializable {
 		this.texto = texto;
 	}
 
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer getIdentificador() {
 		return identificador;
 	}
@@ -46,7 +55,16 @@ public class Livro implements Serializable {
 		this.texto = texto;
 	}
 	
-	
+	@ManyToOne
+	@JoinColumn(name = "categoria_id")
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
