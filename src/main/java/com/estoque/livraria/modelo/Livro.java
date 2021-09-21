@@ -14,6 +14,7 @@ public class Livro implements Serializable {
 
 	private static final long serialVersionUID = 1L;
     private Integer identificador;
+    private String titulo;
     private String nomeAutor;
     private String texto;
     private Categoria categoria;
@@ -21,12 +22,14 @@ public class Livro implements Serializable {
 	public Livro() {
 		// TODO Auto-generated constructor stub
 	}
-
-	public Livro(Integer identificador, String nomeAutor, String texto) {
+	
+	public Livro(Integer identificador, String titulo, String nomeAutor, String texto, Categoria categoria) {
 		super();
 		this.identificador = identificador;
+		this.titulo = titulo;
 		this.nomeAutor = nomeAutor;
 		this.texto = texto;
+		this.categoria = categoria;
 	}
 
 	@Id
@@ -37,6 +40,14 @@ public class Livro implements Serializable {
 
 	public void setIdentificador(Integer identificador) {
 		this.identificador = identificador;
+	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
 	}
 
 	public String getNomeAutor() {
