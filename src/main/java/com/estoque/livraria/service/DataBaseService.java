@@ -3,7 +3,6 @@ package com.estoque.livraria.service;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import com.estoque.livraria.model.Categoria;
@@ -20,7 +19,7 @@ public class DataBaseService {
 	@Autowired
 	private LivroRepository livroRepository;
 
-	@Bean
+	// @Bean
 	public void startDB() {
 
 		Categoria cat1 = new Categoria(null, "Informática", "Livros de T.I");
