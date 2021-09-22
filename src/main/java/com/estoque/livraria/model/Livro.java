@@ -1,4 +1,4 @@
-package com.estoque.livraria.modelo;
+package com.estoque.livraria.model;
 
 import java.io.Serializable;
 
@@ -13,16 +13,16 @@ import javax.persistence.ManyToOne;
 public class Livro implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-    private Integer identificador;
-    private String titulo;
-    private String nomeAutor;
-    private String texto;
-    private Categoria categoria;
-    
+	private Integer identificador;
+	private String titulo;
+	private String nomeAutor;
+	private String texto;
+	private Categoria categoria;
+
 	public Livro() {
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public Livro(Integer identificador, String titulo, String nomeAutor, String texto, Categoria categoria) {
 		super();
 		this.identificador = identificador;
@@ -65,7 +65,7 @@ public class Livro implements Serializable {
 	public void setTexto(String texto) {
 		this.texto = texto;
 	}
-	
+
 	@ManyToOne
 	@JoinColumn(name = "categoria_id")
 	public Categoria getCategoria() {

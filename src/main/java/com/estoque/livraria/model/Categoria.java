@@ -1,4 +1,4 @@
-package com.estoque.livraria.modelo;
+package com.estoque.livraria.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -13,14 +13,13 @@ import javax.persistence.OneToMany;
 @Entity
 public class Categoria implements Serializable {
 
-	
 	private static final long serialVersionUID = 1L;
-    private Integer identificador;
+	private Integer identificador;
 	private String nome;
 	private String descricao;
-    
+
 	private List<Livro> livros = new ArrayList<Livro>();
-	
+
 	public Categoria() {
 		// TODO Auto-generated constructor stub
 	}
@@ -91,5 +90,5 @@ public class Categoria implements Serializable {
 			return false;
 		return true;
 	}
-	
+
 }
