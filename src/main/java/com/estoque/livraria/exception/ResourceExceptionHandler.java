@@ -12,20 +12,29 @@ public class ResourceExceptionHandler {
 
 	// https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
 
-	@ExceptionHandler(NegocioException.class)
-	public ResponseEntity<StandardError> notFoundException(NegocioException exception, ServletRequest request) {
+	@ExceptionHandler(NotFoundException.class)
+	public ResponseEntity<StandardError> notFoundException(NotFoundException exception, ServletRequest request) {
 		StandardError error = new StandardError(System.currentTimeMillis(), HttpStatus.NOT_FOUND.value(),
 				exception.getMessage());
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
 
 	}
 
-	//@ExceptionHandler(NegocioException.class)
-	public ResponseEntity<StandardError> badRequestException(NegocioException exception, ServletRequest request) {
+	// @ExceptionHandler(BadRequestException.class)
+	public ResponseEntity<StandardError> badRequestException(BadRequestException exception, ServletRequest request) {
 		StandardError error = new StandardError(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value(),
 				exception.getMessage());
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
 
 	}
 
+	//@ExceptionHandler(NotFoundException.class)
+	//@ResponseStatus(HttpStatus.NOT_FOUND)
+	public ResponseEntity<StandardError> handleNoSuchElementFoundException(NotFoundException exception) {
+
+		StandardError error = new StandardError(System.currentTimeMillis(), HttpStatus.NOT_FOUND.value(),
+				exception.getMessage());
+
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+	}
 }

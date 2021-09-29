@@ -90,5 +90,4 @@ public class Categoria implements Serializable {
 			return false;
 		return true;
 	}
-
 }

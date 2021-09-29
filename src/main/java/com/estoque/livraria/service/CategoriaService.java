@@ -6,9 +6,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.estoque.livraria.exception.NegocioException;
+import com.estoque.livraria.exception.NotFoundException;
 import com.estoque.livraria.model.Categoria;
 import com.estoque.livraria.repositories.CategoriaRepository;
+import com.estoque.livraria.specification.CategoriaSpecification;
 
 @Service
 public class CategoriaService {
@@ -17,12 +18,14 @@ public class CategoriaService {
 	private CategoriaRepository repository;
 
 	public List<Categoria> findAll() {
-		return repository.findAll();
+
+		String descricao = "Livros de T.I";
+		return repository.findAll(CategoriaSpecification.byDescricao(descricao));
 	}
 
 	public Categoria findById(Integer id) {
 		Optional<Categoria> categoria = repository.findById(id);
-		return categoria.orElseThrow(() -> new NegocioException("Objeto não encontrado! id: " + id + Categoria.class));
+		return categoria.orElseThrow(() -> new NotFoundException("Objeto não encontrado! id: " + id + Categoria.class));
 	}
 
 }
