@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.estoque.livraria.CategoriaDTO;
 import com.estoque.livraria.exception.NotFoundException;
 import com.estoque.livraria.model.Categoria;
 import com.estoque.livraria.repositories.CategoriaRepository;
@@ -24,15 +23,17 @@ public class CategoriaService {
 		return repository.findAll();
 	}
 
-	
+	public Categoria findById(Integer id) {
+		Optional<Categoria> categoria = repository.findById(id);
+		return categoria.orElseThrow(() -> new NotFoundException("Objeto não encontrado! id: " + id + 
+				Categoria.class));
+	}
 	
 	
 	public Categoria save(Categoria categoria) {
+		categoria.setIdentificador(null);
 		return repository.save(categoria);
 	}
 
-	public Categoria findById(Integer id) {
-		Optional<Categoria> categoria = repository.findById(id);
-		return categoria.orElseThrow(() -> new NotFoundException("Objeto não encontrado! id: " + id + Categoria.class));
-	}
+	
 }

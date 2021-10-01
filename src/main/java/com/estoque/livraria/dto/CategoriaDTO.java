@@ -1,4 +1,4 @@
-package com.estoque.livraria;
+package com.estoque.livraria.dto;
 
 import java.io.Serializable;
 
