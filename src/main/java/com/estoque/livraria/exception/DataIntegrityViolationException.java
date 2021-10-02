@@ -1,15 +1,15 @@
 package com.estoque.livraria.exception;
 
-public class NotFoundException extends RuntimeException {
+public class DataIntegrityViolationException extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;
 
-	public NotFoundException(String message, Throwable cause) {
+	public DataIntegrityViolationException(String message, Throwable cause) {
 		super(message, cause);
 		// TODO Auto-generated constructor stub
 	}
 
-	public NotFoundException(String message) {
+	public DataIntegrityViolationException(String message) {
 		super(message);
 		// TODO Auto-generated constructor stub
 	}

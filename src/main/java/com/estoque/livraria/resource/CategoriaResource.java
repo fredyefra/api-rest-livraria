@@ -57,7 +57,6 @@ public class CategoriaResource {
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(resposta.getIdentificador()).toUri();
 
-		// return ResponseEntity.created(uri).body(resposta);
 		return ResponseEntity.created(uri).build();
 
 	}
@@ -70,10 +69,7 @@ public class CategoriaResource {
 
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> delete(@PathVariable Integer id) {
-
 		service.delete(id);
 		return ResponseEntity.noContent().build();
-
 	}
-
 }

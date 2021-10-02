@@ -67,7 +67,7 @@ public class Livro implements Serializable {
 		this.texto = texto;
 	}
 
-	//@JsonIgnore
+	// @JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "categoria_id")
 	public Categoria getCategoria() {
@@ -101,5 +101,10 @@ public class Livro implements Serializable {
 		} else if (!identificador.equals(other.identificador))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Livro [identificador=" + identificador + "]";
 	}
 }
