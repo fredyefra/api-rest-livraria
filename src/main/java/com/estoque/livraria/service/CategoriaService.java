@@ -26,12 +26,11 @@ public class CategoriaService {
 
 	public Categoria findById(Integer id) {
 		Optional<Categoria> categoria = repository.findById(id);
-		return categoria.orElseThrow(() -> new NotFoundException("Objeto não encontrado! id: " + id + 
-				Categoria.class));
+		return categoria.orElseThrow(() -> new NotFoundException("Objeto não encontrado! id: " + id + Categoria.class));
 	}
-	
+
 	public Categoria save(Categoria categoria) {
-		categoria.setIdentificador(null); // if id null jpa create new object 
+		categoria.setIdentificador(null); // if id null jpa create new object
 		return repository.save(categoria);
 	}
 
@@ -42,5 +41,10 @@ public class CategoriaService {
 		return repository.save(categoria);
 	}
 
-	
+	public void delete(Integer id) {
+		Categoria categoria = findById(id);
+		repository.delete(categoria);
+		//return null;
+	}
+
 }
