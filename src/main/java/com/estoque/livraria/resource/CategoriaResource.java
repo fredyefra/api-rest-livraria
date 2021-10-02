@@ -4,12 +4,12 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.aspectj.weaver.patterns.TypeCategoryTypePattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -56,7 +56,14 @@ public class CategoriaResource {
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(resposta.getIdentificador()).toUri();
 
+		// return ResponseEntity.created(uri).body(resposta);
 		return ResponseEntity.created(uri).build();
-		 //return ResponseEntity.created(uri).body(resposta);
+
+	}
+
+	@PutMapping(value = "/{id}")
+    public ResponseEntity<CategoriaDTO> update(@PathVariable Integer id, @RequestBody CategoriaDTO dto) {
+	Categoria categoria	= service.update(id,dto);
+    	return ResponseEntity.ok().body(new CategoriaDTO(categoria));
 	}
 }

@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.estoque.livraria.dto.CategoriaDTO;
 import com.estoque.livraria.exception.NotFoundException;
 import com.estoque.livraria.model.Categoria;
 import com.estoque.livraria.repositories.CategoriaRepository;
@@ -29,9 +30,15 @@ public class CategoriaService {
 				Categoria.class));
 	}
 	
-	
 	public Categoria save(Categoria categoria) {
-		categoria.setIdentificador(null);
+		categoria.setIdentificador(null); // if id null jpa create new object 
+		return repository.save(categoria);
+	}
+
+	public Categoria update(Integer id, CategoriaDTO dto) {
+		Categoria categoria = findById(id); // if id exist jpa update object
+		categoria.setNome(dto.getNome());
+		categoria.setDescricao(dto.getDescricao());
 		return repository.save(categoria);
 	}
 
