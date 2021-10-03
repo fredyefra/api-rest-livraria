@@ -21,6 +21,11 @@ public class CategoriaSpecification {
 		public static Specification<Categoria> byNome(String nome) {
 			return new Specification<Categoria>() {
 
+			/**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
+
 			public Predicate toPredicate(Root<Categoria> root, CriteriaQuery<?> cq,	
 						CriteriaBuilder cb) {
 					
@@ -32,6 +37,11 @@ public class CategoriaSpecification {
 	//Refactorar Lambda expressao
 	public static Specification<Categoria> byDescricao(String descricao) {
 		return new Specification<Categoria>() {
+
+		/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
 
 		public Predicate toPredicate(Root<Categoria> root, CriteriaQuery<?> cq,	
 					CriteriaBuilder cb) {

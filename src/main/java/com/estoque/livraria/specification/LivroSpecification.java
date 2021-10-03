@@ -11,44 +11,54 @@ import com.estoque.livraria.model.Livro;
 
 public class LivroSpecification {
 
-	//Refactorar Lambda expressao
-	public static Specification<Livro> byTitulo(String titulo){
-		
+	// Refactorar Lambda expressao
+	public static Specification<Livro> byTitulo(String titulo) {
+
 		return new Specification<Livro>() {
-			
-			public Predicate toPredicate(Root<Livro> root, CriteriaQuery<?> cq, 
-					CriteriaBuilder cb) {
-				
+
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			public Predicate toPredicate(Root<Livro> root, CriteriaQuery<?> cq, CriteriaBuilder cb) {
+
 				return cb.equal(root.get("titulo"), titulo);
 			}
 		};
 	}
-	
-	//Refactorar Lambda expressao
+
+	// Refactorar Lambda expressao
 	public static Specification<Livro> byNomeAutor(String nomeAutor) {
-		
+
 		return new Specification<Livro>() {
-			
-			public Predicate toPredicate(Root<Livro> root, CriteriaQuery<?> cq, 
-					CriteriaBuilder cb) {
-				
+
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			public Predicate toPredicate(Root<Livro> root, CriteriaQuery<?> cq, CriteriaBuilder cb) {
+
 				return cb.equal(root.get("nomeAutor"), nomeAutor);
 			}
 		};
 	}
 
-	//Refactorar Lambda expressao
+	// Refactorar Lambda expressao
 	public static Specification<Livro> byTexto(String texto) {
-		
+
 		return new Specification<Livro>() {
-			
-			public Predicate toPredicate(Root<Livro> root, CriteriaQuery<?> cq, 
-					CriteriaBuilder cb) {
-				
+
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			public Predicate toPredicate(Root<Livro> root, CriteriaQuery<?> cq, CriteriaBuilder cb) {
+
 				return cb.equal(root.get("texto"), texto);
 			}
 		};
 	}
-
-
 }
