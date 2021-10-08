@@ -17,8 +17,8 @@ public class LivroService {
 	@Autowired
 	private LivroRepository repository;
 
-	public List<Livro> findAll() {
-		return repository.findAll();
+	public List<Livro> findByCategoria(Integer fkCategoria) {
+		return repository.findByCategoria(fkCategoria);
 	}
 
 	public Livro findById(Integer id) {

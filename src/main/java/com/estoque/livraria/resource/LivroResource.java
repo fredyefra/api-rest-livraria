@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.estoque.livraria.dto.LivroDTO;
@@ -25,17 +26,15 @@ public class LivroResource {
 	@Autowired
 	private LivroService service;
 
-	/*
-	 * @GetMapping public ResponseEntity<List<Livro>> findAll() { List<Livro> livros
-	 * = service.findAll(); return ResponseEntity.ok().body(livros); }
-	 */
-
 	@GetMapping
-	public ResponseEntity<List<LivroDTO>> findAll() {
-		List<Livro> livros = service.findAll();
-		List<LivroDTO> entidadesDTO = livros.stream().map(obj -> new LivroDTO(obj)).collect(Collectors.toList());
+	public ResponseEntity<List<LivroDTO>> findByCategoria(
+			@RequestParam(value = "categoria", defaultValue = "0") Integer fkCategoria) {
+		// localhost:8080/livros?categoria=1
+		List<Livro> livros = service.findByCategoria(fkCategoria);
+		List<LivroDTO> dto = livros.stream().map(obj -> new LivroDTO(obj)).collect(Collectors.toList());
 
-		return ResponseEntity.ok().body(entidadesDTO);
+		return ResponseEntity.ok().body(dto);
+
 	}
 
 	@GetMapping(value = "/{id}")
@@ -47,12 +46,12 @@ public class LivroResource {
 	@PostMapping
 	public ResponseEntity<Livro> create(@RequestBody Livro livro) {
 		Livro resposta = service.save(livro);
-		return ResponseEntity.created(URI.create("/livros/"+resposta.getIdentificador())).build();
+		return ResponseEntity.created(URI.create("/livros/" + resposta.getIdentificador())).build();
 	}
 
 	@PutMapping(value = "/{id}")
-    public ResponseEntity<LivroDTO> update(@PathVariable Integer id, @RequestBody LivroDTO dto){
-    	Livro livro = service.update(id,dto);
+	public ResponseEntity<LivroDTO> update(@PathVariable Integer id, @RequestBody LivroDTO dto) {
+		Livro livro = service.update(id, dto);
 		return ResponseEntity.ok().body(new LivroDTO(livro));
-    }
+	}
 }

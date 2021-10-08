@@ -5,9 +5,12 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 import com.estoque.livraria.model.Livro;
+import com.estoque.livraria.repositories.criteria.LivroCriteria;
 
 @Repository
 public interface LivroRepository extends JpaRepository<Livro, Integer>, 
-                                         JpaSpecificationExecutor<Livro>  {
+                                         JpaSpecificationExecutor<Livro>,
+                                         LivroCriteria {
 
+	
 }

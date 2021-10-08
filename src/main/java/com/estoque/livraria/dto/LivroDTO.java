@@ -12,7 +12,7 @@ public class LivroDTO implements Serializable {
 	private String nomeAutor;
 	private String texto;
 
-	//private Categoria categoria;
+	// private Categoria categoria;
 
 	public LivroDTO() {
 		super();
@@ -23,8 +23,8 @@ public class LivroDTO implements Serializable {
 		this.identificador = entidade.getIdentificador();
 		this.titulo = entidade.getTitulo();
 		this.nomeAutor = entidade.getNomeAutor();
-		this.texto = entidade.getTexto();
-		//this.categoria = entidade.getCategoria();
+		//this.texto = entidade.getTexto();
+		// this.setCategoria(entidade.getCategoria());
 	}
 
 	public Integer getIdentificador() {
@@ -88,4 +88,5 @@ public class LivroDTO implements Serializable {
 	public String toString() {
 		return "LivroDTO [identificador=" + identificador + "]";
 	}
+
 }

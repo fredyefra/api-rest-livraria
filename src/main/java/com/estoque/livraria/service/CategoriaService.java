@@ -19,9 +19,6 @@ public class CategoriaService {
 	private CategoriaRepository repository;
 
 	public List<Categoria> findAll() {
-
-		// String descricao = "Livros de T.I";
-		// return repository.findAll(CategoriaSpecification.byDescricao(descricao));
 		return repository.findAll();
 	}
 
