@@ -8,6 +8,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -45,6 +48,8 @@ public class Livro implements Serializable {
 		this.identificador = identificador;
 	}
 
+	@NotEmpty(message = "Campo TIULO é requerido")
+	@Length(min = 3, max = 50, message = "O Campo TITULO deve ter entre 3 e 50 caracteres")
 	public String getTitulo() {
 		return titulo;
 	}
@@ -53,6 +58,8 @@ public class Livro implements Serializable {
 		this.titulo = titulo;
 	}
 
+	@NotEmpty(message = "Campo NOME DO AUTOR é requerido")
+	@Length(min = 3, max = 200, message = "O Campo NOME AUTOR deve ter entre 3 e 200 caracteres")
 	public String getNomeAutor() {
 		return nomeAutor;
 	}
@@ -61,6 +68,8 @@ public class Livro implements Serializable {
 		this.nomeAutor = nomeAutor;
 	}
 
+	@NotEmpty(message = "Campo TEXTO é requerido")
+	@Length(min = 3, max = 200000, message = "O Campo TEXTO deve ter entre 10 e 200000 caracteres")
 	public String getTexto() {
 		return texto;
 	}

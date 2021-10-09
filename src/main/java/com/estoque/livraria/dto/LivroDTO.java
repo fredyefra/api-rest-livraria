@@ -2,6 +2,10 @@ package com.estoque.livraria.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
+
 import com.estoque.livraria.model.Livro;
 
 public class LivroDTO implements Serializable {
@@ -35,6 +39,8 @@ public class LivroDTO implements Serializable {
 		this.identificador = identificador;
 	}
 
+	@NotEmpty(message = "Campo TIULO é requerido")
+	@Length(min = 3, max = 50, message = "O Campo TITULO deve ter entre 3 e 50 caracteres")
 	public String getTitulo() {
 		return titulo;
 	}
