@@ -26,15 +26,22 @@ public class LivroResource {
 	@Autowired
 	private LivroService service;
 
+	/*
+	 * @GetMapping("/") public ResponseEntity<List<LivroDTO>> findAll() {
+	 * List<Livro> livros = service.findAll(); List<LivroDTO> dto =
+	 * livros.stream().map(obj -> new LivroDTO(obj)).collect(Collectors.toList());
+	 * 
+	 * return ResponseEntity.ok().body(dto); }
+	 */
+
 	@GetMapping
-	public ResponseEntity<List<LivroDTO>> findByCategoria(
+	public ResponseEntity<List<LivroDTO>> findLivroByCategoria(
 			@RequestParam(value = "categoria", defaultValue = "0") Integer fkCategoria) {
 		// localhost:8080/livros?categoria=1
 		List<Livro> livros = service.findByCategoria(fkCategoria);
 		List<LivroDTO> dto = livros.stream().map(obj -> new LivroDTO(obj)).collect(Collectors.toList());
 
 		return ResponseEntity.ok().body(dto);
-
 	}
 
 	@GetMapping(value = "/{id}")
@@ -44,8 +51,11 @@ public class LivroResource {
 	}
 
 	@PostMapping
-	public ResponseEntity<Livro> create(@RequestBody Livro livro) {
-		Livro resposta = service.save(livro);
+	public ResponseEntity<Livro> create(@RequestParam(value = "categoria", defaultValue = "0") Integer id_cat,
+			@RequestBody Livro livro) {
+		// nao existe livro sem categoria @RequestParam(value = "categoria",
+		// defaultValue = "0")
+		Livro resposta = service.save(id_cat, livro);
 		return ResponseEntity.created(URI.create("/livros/" + resposta.getIdentificador())).build();
 	}
 

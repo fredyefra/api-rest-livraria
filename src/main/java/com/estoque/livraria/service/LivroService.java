@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.estoque.livraria.dto.LivroDTO;
 import com.estoque.livraria.exception.NotFoundException;
+import com.estoque.livraria.model.Categoria;
 import com.estoque.livraria.model.Livro;
 import com.estoque.livraria.repositories.LivroRepository;
 
@@ -16,6 +17,13 @@ public class LivroService {
 
 	@Autowired
 	private LivroRepository repository;
+
+	@Autowired
+	private CategoriaService categoriaService;
+
+	public List<Livro> findAll() {
+		return repository.findAll();
+	}
 
 	public List<Livro> findByCategoria(Integer fkCategoria) {
 		return repository.findByCategoria(fkCategoria);
@@ -26,16 +34,19 @@ public class LivroService {
 		return livro.orElseThrow(() -> new NotFoundException("Objeto não encontrado! id: " + id + Livro.class));
 	}
 
-	public Livro save(Livro livro) {
+	public Livro save(Integer id_cat, Livro livro) {
 		livro.setIdentificador(null);
+		Categoria categoria = categoriaService.findById(id_cat);
+		livro.setCategoria(categoria);
 		return repository.save(livro);
 	}
 
 	public Livro update(Integer id, LivroDTO dto) {
 		Livro livro = findById(id); // if id exist jpa update object
 		livro.setTitulo(dto.getTitulo());
-		livro.setNomeAutor(dto.getNomeAutor());
-		livro.setTexto(dto.getTexto());
+		// livro.setNomeAutor(dto.getNomeAutor());
+		// livro.setTexto(dto.getTexto());
 		return repository.save(livro);
 	}
+
 }

@@ -21,15 +21,16 @@ public class LivroCriteriaImpl implements LivroCriteria {
 
 	@Override
 	public List<Livro> findByCategoria(Integer fkCategoria) {
-
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		CriteriaQuery<Livro> cq = cb.createQuery(Livro.class);
 		Root<Livro> root = cq.from(Livro.class);
 		Join<Livro, Categoria> join = root.join("categoria");
-		
-		cq.select(root).where(cb.equal(join.get("identificador"), fkCategoria));
-		
+
+		cq.select(root).where(cb.equal(join.get("identificador"), fkCategoria))
+				.orderBy(cb.asc(root.get("identificador")));
+
+		// cq.orderBy(cb.asc(root.get("titulo")));
+
 		return em.createQuery(cq).getResultList();
 	}
-
 }
