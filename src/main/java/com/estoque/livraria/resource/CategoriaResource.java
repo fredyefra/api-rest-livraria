@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.estoque.livraria.dto.CategoriaDTO;
 import com.estoque.livraria.model.Categoria;
@@ -48,44 +47,39 @@ public class CategoriaResource {
 	}
 
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Categoria> findById(
-			@PathVariable Integer id) 
-	{
+	public ResponseEntity<Categoria> findById(@PathVariable Integer id) {
 		Categoria categoria = service.findById(id);
 		return ResponseEntity.ok().body(categoria);
 	}
 
 	@PostMapping
-	public ResponseEntity<Categoria> create(
-			@Valid
-			@RequestBody Categoria categoria) 
-	{
+	public ResponseEntity<Categoria> create(@Valid @RequestBody Categoria categoria) {
 
+		categoria.setIdentificador(null);
+		categoria.setNome("Teste");
+		categoria.setDescricao("Descricao");
+		
 		Categoria resposta = service.save(categoria);
 
+		
+		
 		/*
 		 * URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 		 * .buildAndExpand(resposta.getIdentificador()).toUri();
 		 */
-		//return ResponseEntity.created(uri).build();
-        
+		// return ResponseEntity.created(uri).build();
+
 		return ResponseEntity.created(URI.create("/categorias/" + resposta.getIdentificador())).build();
 	}
 
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<CategoriaDTO> update(
-			@Valid 
-			@PathVariable Integer id, 
-			@RequestBody CategoriaDTO dto) 
-	{
+	public ResponseEntity<CategoriaDTO> update(@Valid @PathVariable Integer id, @RequestBody CategoriaDTO dto) {
 		Categoria categoria = service.update(id, dto);
 		return ResponseEntity.ok().body(new CategoriaDTO(categoria));
 	}
 
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<Void> delete(
-		@PathVariable Integer id) 
-	{
+	public ResponseEntity<Void> delete(@PathVariable Integer id) {
 		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}

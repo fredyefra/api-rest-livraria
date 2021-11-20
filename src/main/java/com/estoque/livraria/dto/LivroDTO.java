@@ -40,7 +40,7 @@ public class LivroDTO implements Serializable {
 	}
 
 	@NotEmpty(message = "Campo TIULO é requerido")
-	@Length(min = 3, max = 50, message = "O Campo TITULO deve ter entre 3 e 50 caracteres")
+	@Length(min = 3, max = 100, message = "O Campo TITULO deve ter entre 3 e 100 caracteres.")
 	public String getTitulo() {
 		return titulo;
 	}
@@ -48,16 +48,6 @@ public class LivroDTO implements Serializable {
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
-
-	/*
-	 * public String getNomeAutor() { return nomeAutor; }
-	 * 
-	 * public void setNomeAutor(String nomeAutor) { this.nomeAutor = nomeAutor; }
-	 * 
-	 * public String getTexto() { return texto; }
-	 * 
-	 * public void setTexto(String texto) { this.texto = texto; }
-	 */
 
 	@Override
 	public int hashCode() {
@@ -88,5 +78,4 @@ public class LivroDTO implements Serializable {
 	public String toString() {
 		return "LivroDTO [identificador=" + identificador + "]";
 	}
-
 }

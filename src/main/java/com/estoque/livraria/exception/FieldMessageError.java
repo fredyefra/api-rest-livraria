@@ -2,7 +2,7 @@ package com.estoque.livraria.exception;
 
 import java.io.Serializable;
 
-/**
+/**@author fredyefra
  * Captura o erro no campo[field] e a respectiva mensagem[message] de validação
  **/
 public class FieldMessageError implements Serializable {
