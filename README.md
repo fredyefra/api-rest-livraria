@@ -3,7 +3,7 @@
 Simple project using spring boot for build REST API.
 
 
-<img src="/img/captura-consumer-cep.png" alt="My cool logo"/>
+<img src="captura-de-tela-livraria.png" alt="My cool logo"/>
 
 
 System requirements
