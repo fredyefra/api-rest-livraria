@@ -19,4 +19,5 @@ Build and Running
 
 1. In command line mvn clean install
 2. Open a command line and navigate to the directory  target in project
-3. The command java -jar livraria-0.0.1-SNAPSHOT.war running application 
+3. The command java -jar livraria-0.0.1-SNAPSHOT.war running application
+4. http://localhost:8080/categorias 
