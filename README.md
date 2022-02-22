@@ -2,9 +2,7 @@
 
 Simple project using spring boot for build REST API.
 
-
 <img src="captura-de-tela-livraria.png" alt="My cool logo"/>
-
 
 System requirements
 -------------------
