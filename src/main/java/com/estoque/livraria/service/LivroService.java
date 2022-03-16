@@ -44,8 +44,8 @@ public class LivroService {
 	public Livro update(Integer id, LivroDTO dto) {
 		Livro livro = findById(id); // if id exist jpa update object
 		livro.setTitulo(dto.getTitulo());
-		// livro.setNomeAutor(dto.getNomeAutor());
-		// livro.setTexto(dto.getTexto());
+		livro.setNomeAutor(dto.getNomeAutor());
+		livro.setTexto(dto.getTexto());
 		return repository.save(livro);
 	}
 

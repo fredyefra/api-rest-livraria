@@ -56,8 +56,8 @@ public class CategoriaResource {
 	public ResponseEntity<Categoria> create(@Valid @RequestBody Categoria categoria) {
 
 		categoria.setIdentificador(null);
-		categoria.setNome("Teste");
-		categoria.setDescricao("Descricao");
+		//categoria.setNome("Teste");
+		//categoria.setDescricao("Descricao");
 		
 		Categoria resposta = service.save(categoria);
 

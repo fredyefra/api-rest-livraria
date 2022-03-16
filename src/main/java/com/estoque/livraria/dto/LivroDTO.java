@@ -13,8 +13,8 @@ public class LivroDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer identificador;
 	private String titulo;
-	// private String nomeAutor;
-	// private String texto;
+	private String nomeAutor;
+	private String texto;
 
 	// private Categoria categoria;
 
@@ -26,8 +26,8 @@ public class LivroDTO implements Serializable {
 		super();
 		this.identificador = entidade.getIdentificador();
 		this.titulo = entidade.getTitulo();
-		// this.nomeAutor = entidade.getNomeAutor();
-		// this.texto = entidade.getTexto();
+		this.nomeAutor = entidade.getNomeAutor();
+		this.texto = entidade.getTexto();
 		// this.setCategoria(entidade.getCategoria());
 	}
 
@@ -47,6 +47,22 @@ public class LivroDTO implements Serializable {
 
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
+	}
+
+	public String getNomeAutor() {
+		return nomeAutor;
+	}
+
+	public void setNomeAutor(String nomeAutor) {
+		this.nomeAutor = nomeAutor;
+	}
+
+	public String getTexto() {
+		return texto;
+	}
+
+	public void setTexto(String texto) {
+		this.texto = texto;
 	}
 
 	@Override
